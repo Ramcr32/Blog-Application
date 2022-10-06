@@ -13,6 +13,9 @@ public class CommentServiceImp implements CommentService {
 	@Autowired
 	private CommentDAO cDao ;
 	
+//	@Autowired 
+//	private PostService postService;
+	
 	@Override
 	public List<Comment> getAllCommentOfPost(Integer postid) throws CommentException {
 		List<Comment> comments = cDao.findAllByPostId(postid);
@@ -26,21 +29,25 @@ public class CommentServiceImp implements CommentService {
 	}
 
 	@Override
-	public Comment newComment(Integer postid, Comment comment) throws CommentException {
-		// TODO Auto-generated method stub
-		return null;
+	public Comment newComment(Comment comment) throws CommentException {
+//		 postService.getPostById(postid).getComment().add(comment);
+		
+		return cDao.save(comment);
 	}
 
 	@Override
-	public Comment updateComment(Integer postid, Comment comment) throws CommentException {
-		// TODO Auto-generated method stub
-		return null;
+	public Comment updateComment(Integer id, Comment comment) throws CommentException {
+		Comment c = cDao.findById(id).orElseThrow(()->new  CommentException("no comment is fond with id "+id));
+		cDao.save(comment);
+		return comment;
+		
 	}
 
 	@Override
 	public Comment deleteComment(Integer id) throws CommentException {
-		// TODO Auto-generated method stub
-		return null;
+		Comment c = cDao.findById(id).orElseThrow(()->new  CommentException("no comment is fond with id "+id));
+		cDao.delete(c);
+		return c;
 	}
 	
 
