@@ -19,6 +19,7 @@ public class PostServiceImp implements PostService {
 	@Override
 	public List<Post> getAllPost() {
 		List<Post> list = pDao.findAll();
+		
 		return list;
 	}
 
