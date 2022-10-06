@@ -24,26 +24,28 @@ public class PostServiceImp implements PostService {
 
 	@Override
 	public Post getPostById(Integer id) throws PostException {
-		// TODO Auto-generated method stub
-		return null;
+		Post post = pDao.findById(id).orElseThrow(()->new PostException("no post here with id "+id));
+		return post;
 	}
 
 	@Override
 	public Post createNewPost(Post post) throws PostException {
-		// TODO Auto-generated method stub
-		return null;
+		return pDao.save(post);
 	}
 
 	@Override
-	public Post updatePost(Integer id) throws PostException {
-		// TODO Auto-generated method stub
-		return null;
+	public Post updatePost(Integer id , Post post) throws PostException {
+		Post p = pDao.findById(id).orElseThrow(()->new PostException("no post here with id "+id));
+		
+		return pDao.save(post);
 	}
 
 	@Override
 	public Post deletePost(Integer id) throws PostException {
-		// TODO Auto-generated method stub
-		return null;
+		Post post = pDao.findById(id).orElseThrow(()->new PostException("no post here with id "+id));
+		
+		pDao.delete(post);
+		return post;
 	}
 
 }

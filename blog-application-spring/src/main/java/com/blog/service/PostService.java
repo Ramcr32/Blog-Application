@@ -14,7 +14,7 @@ public interface PostService {
 
 	public Post createNewPost(Post post) throws PostException;
 
-	public Post updatePost(Integer id) throws PostException;
+	public Post updatePost(Integer id,Post post) throws PostException;
 
 	public Post deletePost(Integer id) throws PostException;
 
