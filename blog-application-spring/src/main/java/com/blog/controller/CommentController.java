@@ -37,7 +37,7 @@ public class CommentController {
 
 	@PostMapping("/posts/{postId}/comments")
 	public ResponseEntity<Comment> newCommentHandler(@PathVariable Integer postId, @RequestBody Comment comment) {
-		Comment c = commentservice.newComment(comment);
+		Comment c = commentservice.newComment(postId,comment);
 		return new ResponseEntity<>(c, HttpStatus.ACCEPTED);
 	}
 

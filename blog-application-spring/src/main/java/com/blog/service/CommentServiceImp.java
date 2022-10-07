@@ -7,14 +7,16 @@ import org.springframework.stereotype.Service;
 
 import com.blog.exceptions.CommentException;
 import com.blog.model.Comment;
+import com.blog.model.Post;
 import com.blog.repository.CommentDAO;
+import com.blog.repository.PostDAO;
 @Service
 public class CommentServiceImp implements CommentService {
 	@Autowired
 	private CommentDAO cDao ;
 	
 //	@Autowired 
-//	private PostService postService;
+//	private PostDAO pDao;
 	
 	@Override
 	public List<Comment> getAllCommentOfPost(Integer postid) throws CommentException {
@@ -29,8 +31,9 @@ public class CommentServiceImp implements CommentService {
 	}
 
 	@Override
-	public Comment newComment(Comment comment) throws CommentException {
-//		 postService.getPostById(postid).getComment().add(comment);
+	public Comment newComment(Integer postId,Comment comment) throws CommentException {
+		
+		 
 		
 		return cDao.save(comment);
 	}

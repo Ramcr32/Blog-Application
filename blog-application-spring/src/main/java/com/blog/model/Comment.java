@@ -24,7 +24,7 @@ public class Comment {
 	private String email;
 	@NotNull
 	private String body;
-	@ManyToOne(fetch =  FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnore
 	private Post post;
 }

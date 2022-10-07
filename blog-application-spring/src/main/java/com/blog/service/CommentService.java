@@ -12,7 +12,7 @@ public interface CommentService {
 
 	public Comment getCommentById(Integer id) throws CommentException;
 
-	public Comment newComment(Comment comment) throws CommentException;
+	public Comment newComment(Integer postId,Comment comment) throws CommentException;
 
 	public Comment updateComment(Integer id, Comment comment) throws CommentException;
 
