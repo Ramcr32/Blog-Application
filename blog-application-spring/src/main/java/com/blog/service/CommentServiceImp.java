@@ -1,6 +1,7 @@
 package com.blog.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +16,8 @@ public class CommentServiceImp implements CommentService {
 	@Autowired
 	private CommentDAO cDao ;
 	
-//	@Autowired 
-//	private PostDAO pDao;
+	@Autowired 
+	private PostDAO pDao;
 	
 	@Override
 	public List<Comment> getAllCommentOfPost(Integer postid) throws CommentException {
@@ -32,7 +33,11 @@ public class CommentServiceImp implements CommentService {
 
 	@Override
 	public Comment newComment(Integer postId,Comment comment) throws CommentException {
-		
+		Optional<Post> opt = pDao.findById(postId);
+		if(opt.isPresent()) {
+			Post post = opt.get();
+			System.out.println(post.getComment().add(comment));
+		}
 		 
 		
 		return cDao.save(comment);

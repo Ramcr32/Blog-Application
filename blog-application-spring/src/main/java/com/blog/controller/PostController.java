@@ -2,6 +2,8 @@ package com.blog.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,13 +38,13 @@ public class PostController {
 	}
 
 	@PostMapping("/posts")
-	public ResponseEntity<Post> postPostHandler(@RequestBody Post post) {
+	public ResponseEntity<Post> postPostHandler(@Valid @RequestBody Post post) {
 		Post posts = postservice.createNewPost(post);
 		return new ResponseEntity<>(posts, HttpStatus.ACCEPTED);
 	}
 
 	@PutMapping("/posts/{id}")
-	public ResponseEntity<Post> updatePostHandler(@PathVariable Integer id, @RequestBody Post post) {
+	public ResponseEntity<Post> updatePostHandler(@PathVariable Integer id,@Valid @RequestBody Post post) {
 		Post posts = postservice.updatePost(id, post);
 		return new ResponseEntity<>(posts, HttpStatus.OK);
 	}
