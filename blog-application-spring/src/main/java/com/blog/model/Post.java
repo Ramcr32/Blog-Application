@@ -34,7 +34,7 @@ public class Post {
 	private String description;
 	@NotNull
 	private String content;
-	
-	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL , orphanRemoval = true)
-	private List<Comment> comment = new ArrayList<>();
+	@JsonIgnore
+	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Comment> comment = new HashSet<>();
 }

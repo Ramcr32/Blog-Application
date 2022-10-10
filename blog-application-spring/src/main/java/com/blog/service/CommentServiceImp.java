@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.blog.exceptions.CommentException;
+import com.blog.exceptions.PostException;
 import com.blog.model.Comment;
 import com.blog.model.Post;
 import com.blog.repository.CommentDAO;
@@ -33,13 +34,10 @@ public class CommentServiceImp implements CommentService {
 
 	@Override
 	public Comment newComment(Integer postId,Comment comment) throws CommentException {
-		Optional<Post> opt = pDao.findById(postId);
-		if(opt.isPresent()) {
-			Post post = opt.get();
-			System.out.println(post.getComment().add(comment));
-		}
-		 
-		
+		Post post  = pDao.findById(postId).orElseThrow(()->new PostException("post is not found with id "+postId));
+//		System.out.println(post.getComment().isEmpty());
+//		post.getComment().add(comment);
+//		pDao.save(post);
 		return cDao.save(comment);
 	}
 
